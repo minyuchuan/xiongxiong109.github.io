@@ -31,12 +31,6 @@ function createBox(){
 	ball.regX=ball.regY=r/2;
 	circleView.addChild(ball);
 }
-//创建随机的三角形
-function createAngle(){
-
-
-
-}
 createjs.Ticker.setFPS(30);
 createjs.Ticker.addEventListener("tick",tick);
 
@@ -59,5 +53,47 @@ function tick(){
 $(".canvas-title-wrap p").on("animationEnd webkitAnimationEnd",function(){
 
 	$(this).css("text-shadow","0px 0px 0px #fff");
+
+});
+//兼容处理,火狐里面无法监听到animationEnd事件
+setTimeout(function(){
+	$(".canvas-title-wrap p").css("text-shadow","0px 0px 0px #fff");
+},2e3);
+
+// tech 滚动屏幕播放动画
+var $Img=$(".img-wrap").find('img');
+$Img.hide();
+var hasShowed=false; //开关变量,如果已经show了动画就不再触发
+//onload是为了确保刷新页面时页面已经停留在出发位置而鼠标没有滚动，仍然要能够播放动画
+var aniTimer=null;
+$(window).on("load scroll",function(){
+	if( $(window).scrollTop()){
+		if( !hasShowed ){
+
+			hasShowed=true;
+			$Img.show();
+			$Img.each(function(idx,ele){
+				$(this).addClass( $(this).data('animate') );
+			});
+			// aniTimer=setTimeout(function(){
+			// 	$(".chrome").animate({
+			// 		"left"
+			// 	})
+			// });
+		}
+	}
+	else{
+		clearTimeout(aniTimer);
+		$Img.fadeOut(400,function(){
+
+			hasShowed=false;
+			$Img.each(function(idx,ele){
+				$(this).removeClass( $(this).data('animate') );
+			});
+
+		});
+
+	}
+	
 
 });
