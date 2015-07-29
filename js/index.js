@@ -5,6 +5,9 @@ canvas.parentNode.style.height=document.documentElement.clientHeight-88+"px";
 canvas.width=canvas.parentNode.clientWidth;
 canvas.height=canvas.parentNode.clientHeight;
 
+var bgView=new createjs.Container();
+stage.addChild(bgView);
+
 var circleView=new createjs.Container();
 stage.addChild(circleView);
 
@@ -96,4 +99,50 @@ $(window).on("load scroll",function(){
 	}
 	
 
+});
+
+
+//show circle
+var hoverTimer=null;
+$(".img-wrap").hover(function(){
+	hoverTimer=setTimeout(function(){
+
+		$(".html5").stop().animate({
+			"right":"60%"
+		});
+		$(".css3").stop().animate({
+			"left":"60%"
+		},function(){
+			$(".tech-text-wrap").fadeIn();
+		});
+
+	}, 3e3);
+
+
+},function(){
+	clearInterval(hoverTimer);
+	$(".html5").stop().animate({"right":"25%"});
+	$(".css3").stop().animate({"left":"25%"});
+	$(".tech-text-wrap").fadeOut();
+
+});
+
+//视差滚动
+$(".img-wrap").on("mousemove",function(e){
+	var judge=e.clientX / $(window).width();
+	var dis=e.clientX / 100; //在10像素内进行小范围移动
+
+	var safari=$(".safari");
+	var chrome=$(".chrome");
+	var firefox=$(".firefox");
+	if(judge<=0.5){//在左边滑动,图片右移
+		safari.css("right",(30+(0.5-dis))+"%");
+		firefox.css("left",(30-(0.5-dis))+"%");
+		chrome.css("right",((0.5-dis)*2)+"%");
+	}
+	else{//在右边滑动,图片左移
+		safari.css("right",(30-(dis-0.5))+"%");
+		firefox.css("left",(30+(dis-0.5))+"%");
+		chrome.css("right",(-(dis-0.5)*2)+"%");
+	}
 });
