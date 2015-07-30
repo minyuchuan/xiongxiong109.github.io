@@ -380,6 +380,78 @@ nav{
 	width: 1024px;
 	margin: auto;
 }
+
+/*skill start*/
+.skill-wrap{
+	width: 960px;
+	overflow: hidden;
+	margin: auto;
+}
+.skill-wrap h4{
+	font-size: 36px;
+	padding: 18px;
+	color: #ddd;
+	text-shadow:0px 1px 1px #000,0px 3px 10px #000;
+	text-align: center;
+	width: 1024px;
+	margin: auto;
+}
+.tab-btn{
+	width: 960px;
+	margin: auto;
+	overflow: hidden;
+	margin-bottom: 10px;
+	text-align: center;
+}
+.tab-btn li{
+	display: inline-block;
+	width: 33%;
+	height: 120px;
+	line-height: 120px;
+	font-size: 38px;
+	font-weight: bold;
+	color: #2c2c2c;
+	text-shadow:-1px -1px 1px #000;
+	cursor: pointer;
+	text-align: center;
+	border-bottom: 3px solid transparent;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+}
+.tab-btn li.active,
+.tab-btn li:hover{
+	color: #ddd;
+	border-bottom-color:#ddd; 
+}
+.tab-content{
+	padding: 8px;
+	height: auto;
+	background-color:#2C2C2C;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
+.tab-content li{
+	font-size: 28px;
+	color: #ddd;
+	text-shadow:1px 1px 1px #000;
+	display: none;
+}
+.tab-content li.active{
+	display: block;
+}
+.star{
+	width: 25px;
+	height: 25px;
+	margin-right: 5px;
+	display: block;
+	float: right;
+	background: url("../img/star.png") 0px 0px no-repeat;
+	background-size: 100% 100%;
+}
+/*skill end*/
 /*animation*/
 @-webkit-keyframes scale-to-none{
 	to{
