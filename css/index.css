@@ -272,7 +272,114 @@ nav{
 	animation-delay: -0.6s;
 }
 /*tech end*/
-
+.content-box{
+	position: relative;
+}
+.timeLine-wrap{
+	width: 960px;
+	/*height: 600px;*/
+	/*background-color: #000;*/
+	margin: auto;
+	position: relative;
+	margin-bottom: 10px;
+}
+.timeLine-ball-wrap{
+	position: absolute;
+	top: 50%;
+	margin-top: -5px;
+	left:-100px;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+.timeLine-bar{
+	width: 5px;
+	border-radius:5px;
+	height: 100%;
+	background-color: #555;
+	box-shadow: 1px 1px 1px #000 inset;
+	position: absolute;
+	left: 120px;
+}
+.timeLine-date{
+	padding: 4px;
+	position: absolute;
+	color: #fff;
+	top: -6px;
+	left: -100px;
+	border: 2px solid #555;
+	border-radius: 5px;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+.timeLine-ball{
+	position: absolute;
+	left:-6px;
+	width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	border: 3px solid #fff;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+.timeLine-ball.active,
+.timeLine-ball:hover{
+	background-color: #555;
+	border-color: #000;
+}
+.timeLine-ball:hover + .timeLine-date,
+.timeLine-date.active{
+	background-color: #fff;
+	color: #000;
+}
+.timeLine-content{
+	width: 600px;
+	height: 100%;
+	position:absolute;
+	left: 220px;
+}
+.timeLine-content p{
+	background-color: #fff;
+	text-indent: 2em;
+	line-height: 1.4em;
+	text-shadow:0px 1px 0px rgba(255,255,255,0.8);
+	position: relative;
+	margin: 8px 0;
+	padding: 8px;
+	border-radius:5px;
+	box-shadow: 1px 1px 1px #000;
+}
+.timeLine-content p:after{
+	content: "";
+	width: 0;
+	height: 0;
+	display: block;
+	border: 6px solid #fff;
+	border-top-color:transparent;
+	border-bottom-color: transparent;
+	border-left-color: transparent; 
+	position: absolute;
+	top: 50%;
+	margin-top: -6px;
+	left:-11px;
+}
+.timeLine-title{
+	font-size: 36px;
+	padding: 18px;
+	color: #ddd;
+	text-shadow:0px 1px 1px #000,0px 3px 10px #000;
+	text-align: center;
+	width: 1024px;
+	margin: auto;
+}
 /*animation*/
 @-webkit-keyframes scale-to-none{
 	to{

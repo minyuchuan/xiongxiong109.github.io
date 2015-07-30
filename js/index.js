@@ -105,10 +105,11 @@ $(window).on("load scroll",function(){
 
 //goback
 $("#goBack").on("click",function(){
-	$("html body").stop().animate({
+	$("body, html").stop().animate({
 		"scrollTop":"0"
 	});
 });
+
 //show circle
 var hoverTimer=null;
 var time=1000;
@@ -161,4 +162,17 @@ $(".tech-wrap").on("mousemove",function(e){
 		firefox.css("left",(30-(dis-0.5)*8+"%"));
 	}
 
+});
+// 视差滚动结束
+
+//时间轴显示
+$(".timeLine-content").css("visibility","hidden");
+$(window).on("load scroll",function(){
+
+	if( $(window).scrollTop()+$(window).height() >=$(".timeLine-wrap").offset().top+$(".timeLine-wrap").height()/2 ){
+		$(".timeLine-content").css("visibility","visible").hide().show().addClass('animated zoomInUp');
+	}
+	else{
+		$(".timeLine-content").css("visibility","hidden").hide().removeClass('animated zoomInUp');
+	}
 });
