@@ -69,6 +69,7 @@ $Img.hide();
 var hasShowed=false; //开关变量,如果已经show了动画就不再触发
 //onload是为了确保刷新页面时页面已经停留在出发位置而鼠标没有滚动，仍然要能够播放动画
 var aniTimer=null;
+var isFirst=true;
 $(window).on("load scroll",function(){
 	if( $(window).scrollTop()){
 		if( !hasShowed ){
@@ -78,12 +79,11 @@ $(window).on("load scroll",function(){
 			$Img.each(function(idx,ele){
 				$(this).addClass( $(this).data('animate') );
 			});
-			// aniTimer=setTimeout(function(){
-			// 	$(".chrome").animate({
-			// 		"left"
-			// 	})
-			// });
+
 		}
+
+		$("#goBack").stop().fadeIn();
+
 	}
 	else{
 		clearTimeout(aniTimer);
@@ -95,16 +95,31 @@ $(window).on("load scroll",function(){
 			});
 
 		});
+		$("#goBack").hide();
+		isFirst=true;
 
 	}
 	
 
 });
 
-
+//goback
+$("#goBack").on("click",function(){
+	$("html body").stop().animate({
+		"scrollTop":"0"
+	});
+});
 //show circle
 var hoverTimer=null;
-$(".img-wrap").hover(function(){
+var time=1000;
+$(".tech-wrap").hover(function(){
+	if(isFirst){//判断是否是第一次执行,当鼠标滚动出屏幕再次进入该页面时，视作第一次执行
+		isFirst=false;
+		time=3000;
+	}
+	else{
+		time=500;
+	}
 	hoverTimer=setTimeout(function(){
 
 		$(".html5").stop().animate({
@@ -116,7 +131,7 @@ $(".img-wrap").hover(function(){
 			$(".tech-text-wrap").fadeIn();
 		});
 
-	}, 3e3);
+	}, time);
 
 
 },function(){
@@ -128,21 +143,22 @@ $(".img-wrap").hover(function(){
 });
 
 //视差滚动
-$(".img-wrap").on("mousemove",function(e){
-	var judge=e.clientX / $(window).width();
-	var dis=e.clientX / 100; //在10像素内进行小范围移动
+$(".tech-wrap").on("mousemove",function(e){
+	var dis=e.clientX / $(".tech-wrap").width(); //0-1的变化
 
 	var safari=$(".safari");
 	var chrome=$(".chrome");
 	var firefox=$(".firefox");
-	if(judge<=0.5){//在左边滑动,图片右移
-		safari.css("right",(30+(0.5-dis))+"%");
-		firefox.css("left",(30-(0.5-dis))+"%");
-		chrome.css("right",((0.5-dis)*2)+"%");
+
+	if(dis<=0.5){//左滑,图片右移
+		safari.css("right",(30-(0.5-dis)*8)+"%");
+		chrome.css("left",((0.5-dis)*25)+"%");
+		firefox.css("left",(30+(0.5-dis)*8+"%"));
 	}
-	else{//在右边滑动,图片左移
-		safari.css("right",(30-(dis-0.5))+"%");
-		firefox.css("left",(30+(dis-0.5))+"%");
-		chrome.css("right",(-(dis-0.5)*2)+"%");
+	else{//右滑
+		safari.css("right",(30+(dis-0.5)*8)+"%");
+		chrome.css("left",(-(dis-0.5)*25)+"%");
+		firefox.css("left",(30-(dis-0.5)*8+"%"));
 	}
+
 });
