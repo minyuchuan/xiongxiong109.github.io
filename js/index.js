@@ -178,30 +178,5 @@ $(window).on("load scroll",function(){
 });
 
 // tab选项卡
-var $oLiBtn=$(".tab-btn").find('li');
-var $oLiCnt=$(".tab-content").find('li');
-addStar($oLiCnt,$(".tab-content").find('.active').index());
-$oLiBtn.on("click",function(){
-	var btn=$(this);
-	$oLiBtn.removeClass('active');
-	$(this).addClass('active');
-	$oLiCnt.removeClass('active').hide();
-	$oLiCnt.eq(btn.index()).addClass('active').hide().fadeIn();
-
-	addStar($oLiCnt,btn.index());
-
-});
 
 //添加星星
-function addStar(ele,index){
-	
-	$oLiCnt.find('span').remove();
-	var oP=$oLiCnt.eq(index).find('p');
-	oP.each(function(idx,ele){
-		var p=$(this);
-		for(var i=0;i<p.data('level');i++){
-			var star=$('<span class="star animated bounceIn"></span>');
-			p.append(star);
-		}
-	});
-}
