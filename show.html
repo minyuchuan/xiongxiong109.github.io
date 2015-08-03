@@ -9,6 +9,24 @@
 	<title>探索</title>
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/show.css">
+	<!--[if lte ie 8]>
+		<link rel="stylesheet" href="css/ltie8.css">
+		<script type="text/javascript"src="js/html5shiv.js"></script>
+		<script type="text/javascript">
+			window.onload=function(){
+				var div=document.createElement("div");
+				div.innerHTML="本站使用了一些html5与css3的技术,您所使用的ie浏览器版本过低,请使用高版本浏览器浏览,推荐使用<a href='http://dlsw.baidu.com/sw-search-sp/soft/9d/14744/ChromeStandalone_V44.0.2403.125_Setup.1438139684.exe'>谷歌浏览器</a><span id='barClose' style='float:right;padding-right:8px;cursor:pointer;'>x</span>";
+				div.style.background="#cdcd00";
+				div.style.padding="8px 0";
+				div.style.textAlign="center";
+				document.body.insertBefore(div,document.body.firstChild);
+
+				document.getElementById("barClose").onclick=function(){
+					document.body.removeChild(this.parentNode);
+				};
+			}
+		</script>
+	<![endif]-->
 </head>
 <body>
 	<!-- header start -->
@@ -27,11 +45,11 @@
 	<nav class="filter">
 		<h1>前端作品</h1>
 		<ul>
-			<li><span class="active">全部</span></li>
-			<li><i class="weChat"></i><span>微信作品</span></li>
-			<li><i class="PC"></i><span>PC作品</span></li>
-			<li><i class="flex"></i><span>响应式</span></li>
-			<li><i class="plugin"></i><span>插件开发</span></li>
+			<li><span class="active" data-class="all">全部</span></li>
+			<li><i class="weChat"></i><span data-class="weChat">微信作品</span></li>
+			<li><i class="PC"></i><span data-class="pc">PC作品</span></li>
+			<li><i class="flex"></i><span data-class="flex">响应式</span></li>
+			<li><i class="plugin"></i><span data-class="plugin">插件开发</span></li>
 		</ul>
 	</nav>
 	<!-- filter end -->

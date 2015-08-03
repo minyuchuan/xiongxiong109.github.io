@@ -113,8 +113,10 @@ nav{
 /*pro-box*/
 .product-wrap{
 	width: 960px;
+	min-height: 300px;
 	margin: auto;
 	overflow: hidden;
+	position: relative;
 }
 .pro-box{
 	width: 304px;
