@@ -58,7 +58,7 @@ function createPixel(){
 //绘制数据
 var data=[
 	{//html
-		text:['ps','html5','htmlPlus','git','canvas','svg','php'],
+		text:['ps','html5','html5Plus','git','canvas','svg','php'],
 		power:[80,90,70,85,80,80,75]
 	},
 	{//css
