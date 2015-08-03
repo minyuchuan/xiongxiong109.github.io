@@ -79,7 +79,11 @@ var data=[
 	}
 ]
 
-createDom(data);
+document.onreadystatechange=function(){
+	if(document.readyState=='complete'){
+		createDom(data);
+	}
+}
 function createDom(data,obj){
 	var str="";
 	for(var i=0;i<data.length;i++){
