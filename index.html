@@ -11,6 +11,20 @@
 	<!--[if lte ie 8]>
 		<link rel="stylesheet" href="css/ltie8.css">
 		<script type="text/javascript"src="js/html5shiv.js"></script>
+		<script type="text/javascript">
+			window.onload=function(){
+				var div=document.createElement("div");
+				div.innerHTML="本站使用了一些html5与css3的技术,您所使用的ie浏览器版本过低,请使用高版本浏览器浏览,推荐使用<a href='http://dlsw.baidu.com/sw-search-sp/soft/9d/14744/ChromeStandalone_V44.0.2403.125_Setup.1438139684.exe'>谷歌浏览器</a><span id='barClose' style='float:right;padding-right:8px;cursor:pointer;'>x</span>";
+				div.style.background="#cdcd00";
+				div.style.padding="8px 0";
+				div.style.textAlign="center";
+				document.body.insertBefore(div,document.body.firstChild);
+
+				document.getElementById("barClose").onclick=function(){
+					document.body.removeChild(this.parentNode);
+				};
+			}
+		</script>
 	<![endif]-->
 	<!--[if ie 9]>
 		<link rel="stylesheet" href="css/fixie9.css">
@@ -22,8 +36,8 @@
 		<nav class="cl">
 			<a href="index.html"><img src="img/logo.png" alt="熊熊109的头像" class="logo fl"></a>
 			<div class="nav-wrap fl cl">
-				<a href="#" class="active">首页</a>
-				<a href="#">探索</a>
+				<a href="index.html" class="active">首页</a>
+				<a href="show.html">探索</a>
 				<a href="#">记忆</a>
 			</div>
 		</nav>
@@ -90,6 +104,9 @@
 			<!-- svg end -->
 		</div>
 	<!-- skill end -->
+	<!-- show -->
+	<a href="show.html" class="show-btn">个人作品展示</a>
+	<!-- show end -->
 	<!-- go back -->
 		<div id="goBack">
 			TOP
