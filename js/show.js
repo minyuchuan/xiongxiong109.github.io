@@ -81,7 +81,9 @@ var data=[
 
 document.onreadystatechange=function(){
 	if(document.readyState=='complete'){
-		createDom(data);
+		setTimeout(function(){
+			createDom(data);
+		}, 1e3);
 	}
 }
 function createDom(data,obj){
