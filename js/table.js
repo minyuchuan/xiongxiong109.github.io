@@ -2,7 +2,7 @@
 var svg=Snap("100%","100%");
 
 createPixel();
-//绘制x,y轴
+//绘制x,y轴,分割横线
 function createPixel(){
 
 	var pX=svg.paper.line(70,10,70,360).attr({
@@ -17,10 +17,42 @@ function createPixel(){
 	var pXText=svg.paper.text(900,380,"skill").attr({
 		stroke:"#555"
 	});
-	var pYText=svg.paper.text(10,30,"power").attr({
+	var pYText=svg.paper.text(10,15,"power").attr({
 		stroke:"#555"
 	});
-
+	//画十条线
+	for(var i=0;i<10;i++){
+		var x1=75;
+		var y1=y2=(358-10)/10*i;
+		var x2=940;
+		var line=svg.paper.line(x1,y1,x2,y2).attr({
+			stroke:"#000",
+			strokeWidth:"1",
+			"stroke-dasharray":"10",
+			"stroke-dashoffset":"1000"
+		});
+	}
+	//画y轴分布线
+	for(var i=0;i<10;i++){
+		var num=svg.paper.text(20,(358-10)/10*i,(100-10*i)+"%").attr({
+			fill:"transparent"
+		});
+		if((10-i)<=5){
+			num.attr({
+				fill:"#555"
+			});
+		}
+		else if((10-i)<=7){
+			num.attr({
+				fill:"#550000"
+			});
+		}
+		else{
+			num.attr({
+				fill:"#cd0000"
+			});
+		}
+	}
 }
 
 //绘制数据
@@ -31,11 +63,11 @@ var data=[
 	},
 	{//css
 		text:['css','css3','less','BootStrap'],
-		power:[85,90,80,75]
+		power:[95,90,80,85]
 	},
 	{//js
 		text:['nativejs','jquery','AF','seajs','angular','nodejs'],
-		power:[90,88,78,80,75,70]
+		power:[90,88,78,80,85,70]
 	}
 ];
 /*起点[55,358],终点[940,358]
@@ -78,7 +110,7 @@ function createPointsArr(data){
 	polyLine.animate({
 		strokeWidth:3,
 		"stroke-dashoffset":"0"
-	},2000,mina.easeOut);
+	},1000,mina.easeOut);
 
 }
 
