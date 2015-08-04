@@ -154,7 +154,7 @@ var data=[
 		url:"https://github.com/xiongxiong109/jquery-seamless",
 		cls:"plugin"
 	}
-]
+];
 
 document.onreadystatechange=function(){
 	if(document.readyState=='complete'){
@@ -186,6 +186,11 @@ function createDom(data,obj){
 	setTimeout(function(){
 		waterFall( $(".pro-box")); //瀑布流布局
 		$(".pro-box").css("visibility","visible");
+		//修正bar的位置
+		$(".pro-content").each(function(idx,ele){
+			var span=$(this).find('.pro-tips').eq(0);
+			$(this).css("top",$(this).height()-span.height()*1.5);
+		});
 		$(".product-wrap").hide().fadeIn();
 	}, 100);
 }
@@ -266,4 +271,13 @@ $span.on("click",function(){
 			createDom(data1);
 		}
 	}
+});
+
+//动态绑定hover事件,用js来代替css3的效果
+$(".product-wrap").delegate(".pro-box","mouseenter",function(){
+	$(this).find('.pro-content').stop().animate({"top":0});
+});
+$(".product-wrap").delegate(".pro-box","mouseleave",function(){
+	var span=$(this).find('.pro-tips');
+	$(this).find('.pro-content').stop().animate({"top":$(this).height()-span.height()*1.5});
 });
