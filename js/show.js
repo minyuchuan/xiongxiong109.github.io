@@ -158,11 +158,42 @@ var data=[
 
 document.onreadystatechange=function(){
 	if(document.readyState=='complete'){
-		setTimeout(function(){
-			createDom(data);
-		}, 1e3);
+			//加载图片
+			loaded();
+			//禁用导航点击事件
+			$(".filter").find('span').off("click");
+
 	}
 }
+
+//图片预加载函数
+// 通过img标签不断加载data中的图片资源,当图片资源全部加载后返回true;否则的话就递归调用
+var loadCnt=0;
+function loaded(){
+		var img=new Image();
+		var p=$("<p>");
+		p.css({
+			"font-size":"28px",
+			"text-align":"center",
+			"padding-top":"50px"
+		});
+
+		img.onload=function(){
+			if(loadCnt<data.length-1){
+				loadCnt++;
+				loaded();
+				p.text("数据加载中("+Math.floor( (loadCnt/data.length)*100 )+"%)");
+				$(".product-wrap").html(p);
+			}
+			else{
+				createDom(data);
+				//绑定筛选事件
+				$(".filter").find('span').on("click",toggleFilter);
+			}
+		}
+		img.src=data[loadCnt].imgUrl;
+}
+//创建节点函数
 function createDom(data,obj){
 	var str="";
 	for(var i=0;i<data.length;i++){
@@ -183,6 +214,7 @@ function createDom(data,obj){
 	//修正有二维码的页面样式
 	$(".barcode").parent().find('.pro-detail').css("padding-top","10%");
 	$(".pro-box").css("visibility","hidden");
+
 	setTimeout(function(){
 		waterFall( $(".pro-box")); //瀑布流布局
 		$(".pro-box").css("visibility","visible");
@@ -193,6 +225,7 @@ function createDom(data,obj){
 		});
 		$(".product-wrap").hide().fadeIn();
 	}, 100);
+
 }
 
 /*
@@ -240,38 +273,40 @@ Array.prototype.indexOf=function(num){
 	return -1;
 }
 
-//筛选器
-var $span=$(".filter").find('span');
+function toggleFilter(){
+	var $span=$(".filter").find('span');
+		if(! $(this).hasClass('active')){//避免多次点击同一个按钮导致加载过快
 
-$span.on("click",function(){
-	$span.removeClass('active');
-	$(this).addClass('active');
-	//实现筛选功能
-	var filter=$(this).data('class');
-	if( filter=='all' ){
-		createDom(data);
-	}
-	else{
-		var data1=[];
-		for(var i=0;i<data.length;i++){
-			if(data[i].cls==filter){
-				data1.push(data[i]);
+			$span.removeClass('active');
+			$(this).addClass('active');
+			//实现筛选功能
+			var filter=$(this).data('class');
+			if( filter=='all' ){
+				createDom(data);
+			}
+			else{
+				var data1=[];
+				for(var i=0;i<data.length;i++){
+					if(data[i].cls==filter){
+						data1.push(data[i]);
+					}
+				}
+				if(data1.length==0){
+					var p=$("<p>暂无查询结果 :-(</p>");
+					p.css({
+						"font-size":"28px",
+						"text-align":"center",
+						"padding-top":"50px"
+					});
+					$(".product-wrap").html(p);
+				}
+				else{
+					createDom(data1);
+				}
 			}
 		}
-		if(data1.length==0){
-			var p=$("<p>暂无查询结果 :-(</p>");
-			p.css({
-				"font-size":"28px",
-				"text-align":"center",
-				"padding-top":"50px"
-			});
-			$(".product-wrap").html(p);
-		}
-		else{
-			createDom(data1);
-		}
-	}
-});
+}
+
 
 //动态绑定hover事件,用js来代替css3的效果
 $(".product-wrap").delegate(".pro-box","mouseenter",function(){
