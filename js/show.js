@@ -156,12 +156,20 @@ var data=[
 	}
 ];
 
+//最大加载时间
+var timeOut=null;
 document.onreadystatechange=function(){
 	if(document.readyState=='complete'){
 			//加载图片
 			loaded();
 			//禁用导航点击事件
 			$(".filter").find('span').off("click");
+
+			//最大加载时间结束后必须开始渲染页面
+			timeOut=setTimeout(function(){
+				createDom(data);
+				$(".filter").find('span').on("click",toggleFilter);
+			}, 4e3);
 
 	}
 }
@@ -186,6 +194,7 @@ function loaded(){
 				$(".product-wrap").html(p);
 			}
 			else{
+				clearTimeout(timeOut);
 				createDom(data);
 				//绑定筛选事件
 				$(".filter").find('span').on("click",toggleFilter);
