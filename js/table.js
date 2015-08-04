@@ -58,16 +58,16 @@ function createPixel(){
 //绘制数据
 var data=[
 	{//html
-		text:['ps','html5','html5Plus','git','canvas','svg','php'],
-		power:[80,90,70,85,80,80,75]
+		text:['ps','html5','html5Plus','git','canvas','svg','php','MySQL'],
+		power:[80,90,70,85,80,80,75,80]
 	},
 	{//css
-		text:['css','css3','less','BootStrap'],
-		power:[95,90,80,85]
+		text:['css','css3','less','sprite','BootStrap','jQueryMobile','AF'],
+		power:[95,90,80,88,85,80,88]
 	},
 	{//js
-		text:['nativejs','jquery','AF','seajs','angular','nodejs'],
-		power:[90,88,78,80,85,70]
+		text:['nativejs','jquery','createjs','Phaser','seajs','coffee','typeScript','angular','node'],
+		power:[90,88,85,72,80,78,68,85,70]
 	}
 ];
 /*起点[55,358],终点[940,358]
